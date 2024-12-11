@@ -13,8 +13,50 @@ footer .footer p {
   margin: 0;
 }
 
+footer ul {
+  display: flex;
+}
+
+footer ul li{
+  list-style-type: none;
+  min-width: 18%;
+  font-weight: 600;
+}
+
+footer ul ul {
+  flex-direction: column;
+  padding-inline-start: 0;
+}
+
+footer ul ul li{
+  font-weight: 100;
+  margin-top: .8em;
+  margin-bottom: .25em;
+}
+
+
 @media (width >= 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
+  }
+
+  .footermainmenu .default-content-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    border: solid 1px #ededed;
+  }
+}
+
+@media (width <= 600px) {
+  footer ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footermainmenu .default-content-wrapper{
+    padding: 20px;
+    border: solid 1px #ededed;
+    text-align: center;
   }
 }
