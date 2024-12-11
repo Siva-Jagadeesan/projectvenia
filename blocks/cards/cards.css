@@ -25,3 +25,124 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+.cards-wrapper .posterview .cards-card-body{
+  position: absolute;
+  top:0;
+  color:#fff;
+  text-align: center;
+  width: 91%;
+}
+
+.cards-wrapper .posterview > ul > li {
+  position: relative;
+}
+
+.cards-wrapper .posterview > ul {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.cards-wrapper .jumbotext-section .cards-card-body{
+  width: 100%;
+  text-align: center;
+}
+
+.cards-wrapper .jumbotext-section h1{
+  font-weight: 100;
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+.cards-wrapper .jumboimg-section h1, .cards-wrapper .jumbotext-section h3{
+  font-weight: 100;
+  line-height: 1.25;
+}
+
+.cards-wrapper .jumboimg-section .cards-card-body{
+  background: #1b252c;
+  padding: 80px;
+  width: 260px;
+  color: #fff;
+  text-align: center;
+}
+
+.cards-wrapper .jumboimg-section .cards-card-body a.button {
+  background-color: transparent;
+  color: #fff;
+  padding: unset;
+  text-decoration: underline
+}
+
+@media (width >= 800px) {
+  .cards-wrapper .jumbotext-section ul{
+    grid-template-columns: auto;
+  }
+
+  .cards-wrapper .jumbotext-section ul li{
+    display: flex;
+    border: unset;
+    margin-top: 2rem;
+  }
+
+  .cards-wrapper .jumbotext-section h1, .cards-wrapper .jumboimg-section h1{
+    font-size: 3.75rem;
+  }
+
+  .cards-wrapper .jumbotext-section h3, .cards-wrapper .jumboimg-section h3{
+    font-size: 3rem;
+  }
+
+  .cards-wrapper .jumboimg-section ul li{
+    display: flex;
+    flex-direction: row;
+    border: unset;
+  }
+
+  .cards-wrapper .jumboimg-section ul{
+    grid-template-columns: none;
+  }
+
+  .cards-wrapper .jumboimg-section ul li img{
+    width: unset;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+  }
+
+  .cards-wrapper .jumboimg-section ul li picture{
+    display: flex;
+  }
+
+  .cards-wrapper .jumboimg-section ul li .cards-card-image{
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+@media ( width <= 800px ){
+  main > .section > .cards-wrapper{
+    margin-top: 30px;
+  }
+
+  .cards-wrapper .jumbotext-section h1,.cards-wrapper .jumboimg-section h1{
+    font-size: 2.75rem;
+  }
+
+  .cards-wrapper .jumbotext-section h3,.cards-wrapper .jumboimg-section h3{
+    font-size: 2rem;
+  }
+
+  .cards-wrapper .jumbotext-section ul li{
+    border: unset;
+  }
+
+  .cards-wrapper .jumbotext-section .cards-card-body{
+    margin: 30px 0;
+  }
+
+  .cards-wrapper .jumboimg-section .cards-card-body{
+    margin: 10px 0 0;
+    padding: 80px 0;
+    width: 100%;
+  }
+}
