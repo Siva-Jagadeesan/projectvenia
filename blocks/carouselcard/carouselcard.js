@@ -20,27 +20,17 @@ function removeslideractiveElement(sliderindicator) {
   });
 }
 
-function createSlideIndicator(row, sliderElement) {
+function createSlideIndicator(row, sliderElement, slideIndicatorCalcValue) {
+  const slideIndicatorNum = Math.floor(row.length / slideIndicatorCalcValue);
   if (row.length > 0) {
-    let slideIndicatorNum;
-    if (isDesktop) slideIndicatorNum = Math.ceil(row.length / 5);
-    if (isTablet) slideIndicatorNum = Math.ceil(row.length / 3);
-    if (isMobile) slideIndicatorNum = Math.ceil(row.length / 2);
     const slideindicatorConatiner = document.createElement('div');
     slideindicatorConatiner.classList.add('Carousel-Slide-Controls');
     const slideindicatorWrapper = document.createElement('ul');
     slideindicatorWrapper.classList.add('carouselcard-slide-indicators');
-    Array.from(row).forEach((element, index) => {
-      for (let j = 0; j < slideIndicatorNum; j + 1) {
-        if (j * (Math.ceil(row.length / slideIndicatorNum)) <= index) {
-          element.setAttribute('data-slide-index', j);
-        }
-      }
-    });
-
-    for (let i = 0; i < slideIndicatorNum; i + 1) {
+    // eslint-disable-next-line no-plusplus
+    for (let j = 0; j < slideIndicatorNum; j++) {
       const indicator = document.createElement('li');
-      indicator.setAttribute('data-target-slide', i);
+      indicator.setAttribute('data-target-slide', j);
       indicator.classList.add('carouselcard-slide-indicator');
       slideindicatorWrapper.append(indicator);
     }
@@ -51,20 +41,32 @@ function createSlideIndicator(row, sliderElement) {
 export default async function decorate(block) {
   const rows = block;
   block.setAttribute('id', 'carouselcard-custome');
+  const divElement = document.getElementsByClassName('carouselcard-slides');
+  let n = 0;
+  if (isDesktop) n = 5;
+  if (isTablet) n = 3;
+  if (isMobile) n = 2;
+
+  let DataSlideIndex = 0;
+  let indexValue = 0;
   rows.childNodes.forEach((element) => {
     if (element.nodeName === 'DIV') {
+      indexValue += 1;
       element.classList.add('carouselcard-slides');
       element.firstElementChild.classList.add('carouselcard-slide-image');
       element.lastElementChild.classList.add('carouselcard-slide-content');
+      element.setAttribute('data-slide-index', DataSlideIndex);
+      const calc = (Math.ceil(indexValue % n));
+      if (calc === 0) {
+        DataSlideIndex += 1;
+      }
     }
   });
 
-  const divElement = document.getElementsByClassName('carouselcard-slides');
-  createSlideIndicator(divElement, rows);
+  createSlideIndicator(divElement, rows, n);
   const sliderindicator = document.getElementsByClassName('carouselcard-slide-indicators')[0];
   sliderindicator.childNodes.forEach((li) => {
     li.addEventListener('click', (e) => {
-      li.classList.remove('active');
       removeslideractiveElement(sliderindicator);
       e.target.classList.add('active');
       carouselIndicatornavigation(e.target.dataset.targetSlide, divElement);
